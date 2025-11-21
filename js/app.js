@@ -1,7 +1,7 @@
 // app.js - main orchestrator
-import * as UI from "../ui.js";
-import * as Storage from "../storage.js";
-import * as Validation from "../validation.js";
+import * as UI from "./ui.js";
+import * as Storage from "./storage.js";
+import * as Validation from "./validation.js";
 
 const RecipeApp = (function () {
   let recipes = [];
