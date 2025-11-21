@@ -1,82 +1,80 @@
-/* ========== Dark Theme Tokens - PROFESSIONAL REFINEMENT ========== */
+/* ========== Dark Theme Tokens ========== */
 :root {
-  /* BACKGROUNDS: Slightly lighter dark base for better contrast/less strain */
-  --bg-base: #0f172a;
-  --bg-header: rgba(15, 23, 42, 0.98); /* Increased opacity for header/footer */
-  --bg-surface: rgba(20, 30, 50, 0.85); /* Slightly lighter surface for distinction */
-  --bg-elevated: rgba(30, 41, 59, 0.9); /* More prominent elevated element */
-  --bg-toolbar: rgba(15, 23, 42, 0.9); /* Increased opacity */
+  --bg-header: rgba(26, 26, 46, 0.96);
+  --bg-surface: rgba(26, 26, 46, 0.78);
+  --bg-elevated: rgba(26, 26, 46, 0.82);
+  --bg-toolbar: rgba(26, 26, 46, 0.7);
 
-  /* BORDERS: Use a more subtle, less bright border */
-  --border-subtle: rgba(148, 163, 184, 0.2); /* Reduced opacity for subtlety */
-  --border-strong: rgba(148, 163, 184, 0.5); /* Less opaque strong border */
+  --border-subtle: rgba(148, 163, 184, 0.25); /* neutral subtle border */
+  --border-strong: rgba(148, 163, 184, 0.45);
 
-  /* TEXT: Kept same */
-  --text-main: #f8fafc; /* Slightly brighter white for main text */
-  --text-muted: #94a3b8; /* Slightly adjusted muted text */
-  --text-soft: #64748b;
+  --text-main: #f1f1f1;
+  --text-muted: #b4b4b4;
+  --text-soft: #7a7a7a;
 
-  /* ACCENT: Corporate Blue (less neon than #38bdf8) */
-  --accent: #2563eb; /* Standard professional blue */
-  --accent-soft: rgba(37, 99, 235, 0.15); /* Softer version */
-  --accent-strong: #1d4ed8;
+  --accent: #5eead4;
+  --accent-soft: rgba(94, 234, 212, 0.18);
+  --accent-strong: #2dd4bf;
 
-  /* STATUS COLORS: Kept for function, slightly toned down */
-  --danger: #ef4444;
-  --danger-strong: #b91c1c;
-  --success: #10b981;
-  --warning: #f59e0b;
+  --danger: #ff6b6b;
+  --danger-strong: #ee5a52;
+  --success: #51cf66;
+  --warning: #ffd43b;
 
-  /* SHADOWS: Subtle, professional glow/lift, reducing the harsh black shadow */
-  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5); /* Lighter, broader shadow */
-  --shadow-card: 0 10px 20px rgba(15, 23, 42, 0.6); /* Reduced darkness */
+  --shadow-soft: 0 32px 80px rgba(0, 0, 0, 0.9);
+  --shadow-card: 0 22px 60px rgba(26, 26, 46, 0.96);
 
-  /* RADIUS & TRANSITION: Slightly tighter radius for a modern, crisp feel */
-  --radius-lg: 16px; /* Reduced from 18px */
-  --radius-md: 8px; /* Reduced from 12px */
-  --radius-sm: 4px; /* Reduced from 8px */
-  --transition-fast: 0.2s ease-in-out; /* Use 'ease-in-out' for smoother, non-bouncy feel */
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --transition-fast: 0.2s ease-out;
 }
 
-/* ========== Base & Background - PROFESSIONAL REFINEMENT ========== */
+/* ========== Base & Background ========== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Reset default margins and set base font styles */
 body {
   margin: 0;
-  /* Use a professional, widely available sans-serif font stack */
-  font-family: 'Inter', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text-main);
-  /* Use the new, softer base background color */
-  background-color: var(--bg-base);
-  
-  /* REMOVE background-image, linear-gradient, and background-attachment for a cleaner, faster, more professional look */
+  /* plain solid background (no image) */
+  background-color: #000; /* plain black background as requested */
   background-image: none;
-  background-attachment: scroll; 
-  
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Subtler background effect */
+/* Decorative gradient overlays (kept but subtle) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.05), transparent 40%);
-  opacity: 1;
-  mix-blend-mode: normal;
+  background:
+    radial-gradient(circle at 0 0, rgba(94, 234, 212, 0.06), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.04), transparent 60%);
+  opacity: 0.6;
+  mix-blend-mode: screen;
   pointer-events: none;
-  z-index: -2;
+  z-index: -1;
 }
 
-/* Remove the 'body::after' vignette effect for a cleaner screen */
+/* Dark vignette effect */
 body::after {
-  content: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ========== Layout ========== */
@@ -86,15 +84,16 @@ body::after {
   align-items: center;
   padding: 0.9rem 1.6rem;
   background: var(--bg-header);
-  backdrop-filter: blur(10px); /* Reduced blur */
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Simplified shadow */
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
+/* Header Content */
 .header-content h1 {
   margin: 0;
   font-size: 1.6rem;
@@ -121,16 +120,15 @@ body::after {
   gap: 0.7rem;
 }
 
+/* header-pill: removed green glow/border, kept neutral border */
 .header-pill {
   font-size: 0.8rem;
   color: var(--accent-strong);
-  background: rgba(15, 23, 42, 0.9);
-  border-radius: 999px;
+  background: rgba(26, 26, 46, 0.9);
+  border-radius: 0; /* square look */
   padding: 0.35rem 0.8rem;
-  border: 1px solid rgba(37, 99, 235, 0.55); /* New accent border */
-  box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 0 12px rgba(37, 99, 235, 0.6); /* New accent glow */
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
 }
 
 .app-main {
@@ -140,12 +138,12 @@ body::after {
   animation: fadeInUp 0.4s ease-out;
 }
 
-/* ========== Buttons - PROFESSIONAL REFINEMENT ========== */
+/* ========== Buttons ========== */
 .btn {
   border: none;
-  border-radius: var(--radius-sm); /* Tighter radius */
-  padding: 0.45rem 0.9rem; /* Tighter padding */
-  font-size: 0.85rem; /* Smaller font */
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -170,7 +168,7 @@ body::after {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.15), /* Reduced opacity shine */
+    rgba(255, 255, 255, 0.3),
     transparent
   );
   transform: translateX(-120%);
@@ -184,41 +182,36 @@ body::after {
 }
 
 .btn.primary {
-  /* Changed to professional blue accent */
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 20px var(--accent-soft);
+  background: radial-gradient(circle at top left, #51cf66, #51cf66, #51cf66);
+  color: #f9fafb;
+  box-shadow: 0 14px 34px rgba(81, 207, 102, 0.85);
 }
 
 .btn.primary:hover {
-  transform: translateY(-1px); /* More subtle hover */
-  box-shadow: 0 10px 25px var(--accent-soft), 0 0 4px rgba(37, 99, 235, 0.5); 
-  background-color: var(--accent-strong);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 18px 44px rgba(81, 207, 102, 0.95);
 }
 
 .btn.secondary {
-  /* Using new tokens */
-  background: var(--bg-toolbar);
+  background: rgba(26, 26, 46, 0.9);
   color: var(--text-main);
-  border-color: var(--border-subtle);
+  border-color: var(--border-strong);
 }
 
 .btn.secondary:hover {
-  /* Subtle accent background on hover */
-  background: rgba(37, 99, 235, 0.1); 
+  background: rgba(45, 212, 191, 0.75);
   border-color: var(--accent);
 }
 
 .btn.danger {
-  /* Using new tokens */
-  background: var(--danger);
+  background: linear-gradient(135deg, var(--danger), var(--danger-strong));
   color: #fff;
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.85);
 }
 
 .btn.danger:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 16px 38px rgba(255, 107, 107, 1);
 }
 
 .btn.link {
@@ -234,7 +227,7 @@ body::after {
 }
 
 .btn:active {
-  transform: scale(0.98) translateY(0); /* More subtle active state */
+  transform: scale(0.97) translateY(1px);
   box-shadow: none;
 }
 
@@ -280,17 +273,17 @@ body::after {
 
 .card-toolbar {
   background: var(--bg-toolbar);
-  border-radius: var(--radius-md); /* Tighter radius */
+  border-radius: 0; /* square */
   padding: 0.75rem 1rem;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
   align-items: center;
-  backdrop-filter: blur(10px); /* Reduced blur */
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .toolbar-left {
-  flex: 1 1 30px;
+  flex: 1 1 180px;
 }
 
 .toolbar-right-group {
@@ -306,7 +299,7 @@ body::after {
   border: 1px solid var(--border-subtle);
   font-size: 0.9rem;
   width: 100%;
-  background: rgba(15, 23, 42, 0.88);
+  background: rgba(26, 26, 46, 0.88);
   color: var(--text-main);
   transition:
     border-color var(--transition-fast),
@@ -351,11 +344,11 @@ body::after {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
-  background: rgba(15, 23, 42, 0.92);
-  border-radius: 999px;
+  background: rgba(26, 26, 46, 0.92);
+  border-radius: 0; /* square */
   padding: 4px;
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Simplified shadow */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9);
   overflow: hidden;
 }
 
@@ -365,11 +358,11 @@ body::after {
   left: 4px;
   width: calc(33.333% - 8px);
   height: calc(100% - 8px);
-  border-radius: 999px;
+  border-radius: 0; /* square thumb */
   background: #f9fafb;
   box-shadow:
-    0 0 0 1px rgba(148, 163, 184, 0.7),
-    0 5px 15px rgba(15, 23, 42, 0.9); /* Simplified shadow */
+    0 0 0 1px var(--border-strong),
+    0 10px 26px rgba(26, 26, 46, 0.9);
   transition: transform 0.22s cubic-bezier(0.3, 1, 0.4, 1);
   pointer-events: none;
 }
@@ -394,29 +387,29 @@ body::after {
 }
 
 .type-slider-option:hover {
-  transform: translateY(0); /* Removed slight lift for precision */
+  transform: translateY(-1px);
 }
 
 .type-dot {
-  width: 10px; /* Slightly smaller dot */
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 2px solid transparent;
 }
 
 .type-dot.both {
-  border-color: #93c5fd;
-  background: #3b82f6;
+  border-color: var(--accent);
+  background: #2dd4bf;
 }
 
 .type-dot.veg {
-  border-color: #34d399;
-  background: #059669;
+  border-color: var(--success);
+  background: var(--success);
 }
 
 .type-dot.nonveg {
-  border-color: #fca5a5;
-  background: #dc2626;
+  border-color: var(--danger);
+  background: var(--danger);
 }
 
 .type-label {
@@ -424,7 +417,7 @@ body::after {
 }
 
 .type-slider-option.is-active {
-  color: #020617;
+  color: #1a1a2e;
 }
 
 @media (min-width: 769px) {
@@ -439,19 +432,18 @@ body::after {
   color: var(--text-soft);
 }
 
-/* ========== Card Helpers - PROFESSIONAL REFINEMENT ========== */
+/* ========== Card Helpers ========== */
 .card-elevated {
   background: var(--bg-elevated);
-  border-radius: var(--radius-md); /* Tighter radius */
-  border: 1px solid var(--border-subtle);
+  border-radius: 0; /* square cards */
+  border: 1px solid var(--border-subtle); /* removed green border */
   box-shadow: var(--shadow-card);
-  backdrop-filter: blur(10px); /* Reduced blur */
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   position: relative;
   overflow: hidden;
 }
 
-/* Simplified card hover glow */
 .card-elevated::before {
   content: "";
   position: absolute;
@@ -459,9 +451,9 @@ body::after {
   border-radius: inherit;
   background: linear-gradient(
     120deg,
-    rgba(37, 99, 235, 0.1), /* Use new accent color */
+    rgba(148, 163, 184, 0.06),
     transparent 40%,
-    transparent
+    rgba(148, 163, 184, 0.04)
   );
   opacity: 0;
   pointer-events: none;
@@ -472,7 +464,7 @@ body::after {
   opacity: 1;
 }
 
-/* ========== Recipe Grid - PROFESSIONAL REFINEMENT ========== */
+/* ========== Recipe Grid ========== */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -481,10 +473,10 @@ body::after {
 
 .recipe-card {
   background: var(--bg-surface);
-  border-radius: var(--radius-md); /* Tighter radius */
-  padding: 1rem; /* Increased padding */
+  border-radius: 0; /* square cards */
+  padding: 0.9rem 1rem;
   box-shadow: var(--shadow-card);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-subtle); /* neutral border */
   cursor: pointer;
   transition:
     transform 0.18s ease-out,
@@ -493,33 +485,58 @@ body::after {
     background-color 0.18s ease-out;
   display: flex;
   align-items: flex-start;
-  gap: 1rem; /* Increased gap */
+  gap: 0.8rem;
   position: relative;
   overflow: hidden;
 }
 
-/* Remove card shine animation */
 .recipe-card::after {
-  content: none;
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 160%;
+  height: 80%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Refined hover effect */
+.recipe-card:hover::after {
+  animation: cardShine 0.7s ease-out forwards;
+}
+
+@keyframes cardShine {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(60%);
+    opacity: 1;
+  }
+}
+
 .recipe-card:hover {
-  transform: translateY(-3px); /* Subtle lift */
+  transform: translateY(-6px) scale(1.01);
   box-shadow: var(--shadow-soft);
-  border-color: var(--accent); /* Highlight with accent color */
-  background-color: rgba(20, 30, 50, 0.95); /* Slightly darker on hover */
+  border-color: rgba(255,255,255,0.04);
 }
 
-/* Recipe Card Thumbnail */
 .recipe-card-thumb {
-  width: 80px; /* Slightly larger thumbnail */
-  height: 80px;
-  border-radius: var(--radius-sm); /* Tighter radius */
+  width: 76px;
+  height: 76px;
+  border-radius: 0; /* square thumb */
   overflow: hidden;
   flex-shrink: 0;
-  border: 1px solid rgba(148, 163, 184, 0.55);
-  background: var(--bg-toolbar); /* Simplified background */
+  border: 1px solid var(--border-subtle); /* removed green border */
+  background: radial-gradient(circle at top left, rgba(148,163,184,0.04), transparent);
   position: relative;
 }
 
@@ -532,7 +549,7 @@ body::after {
 }
 
 .recipe-card:hover .recipe-card-thumb img {
-  transform: scale(1.05); /* Slightly less aggressive zoom */
+  transform: scale(1.08);
 }
 
 .recipe-card-thumb.placeholder {
@@ -563,7 +580,7 @@ body::after {
   text-overflow: ellipsis;
 }
 
-.recipe-card-desc {
+recipe-card-desc {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin: 0;
@@ -585,34 +602,34 @@ body::after {
 /* badges for difficulty */
 .badge {
   padding: 0.15rem 0.7rem;
-  border-radius: 999px;
+  border-radius: 0; /* square badges */
   font-size: 0.72rem;
   font-weight: 600;
 }
 
 .badge.easy {
-  background: rgba(16, 185, 129, 0.2); /* Adjusted to success color */
-  color: var(--success);
+  background: rgba(81, 207, 102, 0.26);
+  color: #51cf66;
 }
 
 .badge.medium {
-  background: rgba(245, 158, 11, 0.2); /* Adjusted to warning color */
-  color: var(--warning);
+  background: rgba(255, 212, 59, 0.3);
+  color: #ffd43b;
 }
 
 .badge.hard {
-  background: rgba(239, 68, 68, 0.2); /* Adjusted to danger color */
-  color: var(--danger);
+  background: rgba(255, 107, 107, 0.3);
+  color: #ff6b6b;
 }
 
 .badge-detail {
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-subtle); /* removed green border */
 }
 
 /* veg / non-veg pill */
 .type-pill {
   padding: 0.15rem 0.7rem;
-  border-radius: 999px;
+  border-radius: 0; /* square pills */
   font-size: 0.72rem;
   font-weight: 600;
   display: inline-flex;
@@ -621,15 +638,15 @@ body::after {
 }
 
 .type-pill.veg {
-  background: rgba(16, 185, 129, 0.25);
-  color: #6ee7b7;
-  border: 1px solid rgba(45, 212, 191, 0.7);
+  background: rgba(81, 207, 102, 0.25);
+  color: #51cf66;
+  border: 1px solid rgba(81, 207, 102, 0.7);
 }
 
 .type-pill.nonveg {
-  background: rgba(239, 68, 68, 0.28);
-  color: #fecaca;
-  border: 1px solid rgba(248, 113, 113, 0.85);
+  background: rgba(255, 107, 107, 0.28);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.85);
 }
 
 .type-pill.veg::before {
@@ -655,6 +672,7 @@ body::after {
 .recipe-detail-card {
   margin-top: 0.9rem;
   padding: 1.15rem 1.3rem 1.4rem;
+  border-radius: 0; /* square card */
 }
 
 .detail-header {
@@ -686,14 +704,14 @@ body::after {
   width: 170px;
   height: 130px;
   object-fit: cover;
-  border-radius: var(--radius-sm); /* Tighter radius */
-  border: 1px solid var(--border-subtle);
+  border-radius: 0; /* square image */
+  border: 1px solid var(--border-subtle); /* removed green border */
   box-shadow: var(--shadow-card);
   transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
 }
 
 .detail-image:hover {
-  transform: translateY(-2px) scale(1.01); /* Subtle hover */
+  transform: translateY(-3px) scale(1.02);
   box-shadow: var(--shadow-soft);
 }
 
@@ -738,6 +756,7 @@ body::after {
   margin-top: 0.9rem;
   max-width: 720px;
   padding: 1.15rem 1.3rem 1.4rem;
+  border-radius: 0; /* square form card */
 }
 
 .form-card h2 {
@@ -764,12 +783,12 @@ body::after {
 .form-group input,
 .form-group textarea,
 .form-group select {
-  border-radius: var(--radius-sm);
+  border-radius: 0; /* square inputs */
   border: 1px solid var(--border-subtle);
   padding: 0.45rem 0.65rem;
   font-size: 0.9rem;
   font-family: inherit;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(26, 26, 46, 0.9);
   color: var(--text-main);
   transition:
     border-color var(--transition-fast),
@@ -814,12 +833,12 @@ body::after {
 }
 
 .form-errors {
-  background: rgba(239, 68, 68, 0.1); /* Use new danger token */
-  border-radius: var(--radius-sm);
+  background: rgba(255, 107, 107, 0.16);
+  border-radius: 0; /* square error box */
   padding: 0.6rem 0.75rem;
   margin-bottom: 0.75rem;
-  border: 1px solid rgba(239, 68, 68, 0.8);
-  color: var(--danger);
+  border: 1px solid rgba(255, 107, 107, 0.8);
+  color: var(--danger-strong);
   font-size: 0.85rem;
 }
 
@@ -839,14 +858,15 @@ body::after {
   z-index: 50;
 }
 
+/*========= Toast Style ======*/
 .toast {
-  background: rgba(15, 23, 42, 0.98);
+  background: rgba(26, 26, 46, 0.98);
   border-radius: 999px;
   padding: 0.55rem 0.9rem;
   font-size: 0.82rem;
   color: var(--text-main);
-  border: 1px solid rgba(37, 99, 235, 0.65); /* New accent border */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); /* Simplified shadow */
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -857,6 +877,7 @@ body::after {
   font-size: 1rem;
 }
 
+/*========= Toast In Animation ======*/
 @keyframes toastIn {
   from {
     opacity: 0;
@@ -868,6 +889,7 @@ body::after {
   }
 }
 
+/*========= Toast Out Animation ======*/
 @keyframes toastOut {
   to {
     opacity: 0;
@@ -881,7 +903,6 @@ body::after {
   font-size: 0.8rem;
   color: var(--text-muted);
   padding: 1rem 0 1.4rem;
-  background-color: rgba(15, 23, 42, 0.98); /* Ensure footer is solid */
 }
 
 /* ========== Responsive ========== */
@@ -890,11 +911,6 @@ body::after {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.55rem;
-  }
-
-  .header-actions {
-    align-self: stretch;
-    justify-content: space-between;
   }
 
   .app-main {
@@ -915,20 +931,32 @@ body::after {
     flex-direction: column;
   }
 
+  /* ---- TOOLBAR MOBILE LAYOUT ---- */
   .toolbar {
     flex-direction: column;
+    align-items: stretch;      /* full width rows */
+  }
+
+  /* This was causing the big vertical gap */
+  .toolbar-left {
+    flex: 0 0 auto;           /* don't stretch vertically */
+    width: 100%;
   }
 
   .toolbar-right-group {
+    flex: 0 0 auto;           /* don't stretch vertically */
     width: 100%;
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column;   /* difficulty on top, slider below */
+    gap: 0.6rem;
+    justify-content: flex-start;
   }
 
-  #difficultyFilter {
-    width: 100%;
-  }
-
+  #searchInput,
+  #difficultyFilter,
   .type-slider {
-    width: 100%;
+    width: 100%;              /* each control full width */
   }
 
   .type-slider-option {
@@ -946,83 +974,4 @@ body::after {
     max-width: 100%;
   }
 }
-/* ---------- CSS-ONLY PARALLAX BACKGROUND (FINAL) ---------- */
-:root {
-  --parallax-overlay: linear-gradient(180deg, rgba(6,8,15,0.45), rgba(6,8,15,0.65));
-}
-
-/* Main parallax layer */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -5;
-  pointer-events: none;
-
-  /* Your uploaded background image (local path used as URL) */
-  background-image:
-    var(--parallax-overlay),
-    url("/mnt/data/87ee6e1a-11e0-4e5a-af40-08f925367e78.png");
-
-  background-size: cover, cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-
-  /* Parallax effect */
-  background-attachment: fixed;
-
-  /* Looks more premium */
-  opacity: 0.95;
-  filter: brightness(0.92) contrast(0.96) saturate(1.05);
-
-  /* Smooth floating parallax animation */
-  transform-origin: center;
-  animation: parallaxFloat 28s ease-in-out infinite alternate;
-  will-change: transform, background-position;
-}
-
-/* Soft outer vignette for high contrast UI */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -4;
-  pointer-events: none;
-
-  background: radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,0) 45%,
-      rgba(0,0,0,0.32) 100%
-  );
-  opacity: 0.95;
-}
-
-/* Keyframes for subtle floating motion */
-@keyframes parallaxFloat {
-  0%   { transform: translateY(0px) scale(1); background-position: center top; }
-  50%  { transform: translateY(-10px) scale(1.01); background-position: center 6%; }
-  100% { transform: translateY(0px) scale(1); background-position: center top; }
-}
-
-/* Mobile performance optimization */
-@media (max-width: 768px) {
-  body::before {
-    background-attachment: scroll; /* better for mobile */
-    animation: none;
-    filter: brightness(0.9) saturate(0.95);
-  }
-  body::after { opacity: 0.9; }
-}
-/* === Custom Edit Button Green Style === */
-.detail-actions .btn.secondary:first-child {
-  background: #10b981 !important; /* green */
-  border-color: #059669 !important;
-  color: #ffffff !important;
-  box-shadow: 0 6px 18px rgba(16,185,129,0.35) !important;
-}
-
-.detail-actions .btn.secondary:first-child:hover {
-  background: #059669 !important; /* darker green */
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(16,185,129,0.45) !important;
-}
+/* ========== End of main.css ========== */

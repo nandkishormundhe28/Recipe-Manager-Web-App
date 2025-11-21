@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Recipe Manager | Butter Chicken & More</title>
+  <title>Recipe Manager</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="main.css" />
 </head>
@@ -10,7 +10,6 @@
   <header class="app-header">
     <div class="header-content">
       <h1>Recipe Manager</h1>
-      <p>Recipes stored in your browser (localStorage)</p>
     </div>
     <div class="header-actions">
       <button id="addRecipeBtn" class="btn primary">+ Add Recipe</button>
@@ -153,6 +152,7 @@
         <div id="formErrors" class="form-errors hidden"></div>
 
         <form id="recipeForm" novalidate>
+          <!-- Hidden field for editing -->
           <input type="hidden" id="recipeId" />
 
           <div class="form-group">
@@ -212,6 +212,8 @@
             <div class="form-group">
               <label for="imageUrl">
                 Image URL <span class="hint">(optional – any food image link)</span>
+              </label>
+              <input type="url" id="imageUrl" placeholder="https://example.com/food.jpg" />
             </div>
           </div>
 
@@ -226,11 +228,12 @@
   </main>
 
   <footer class="app-footer">
-    <p> Recipe Manager • Built with HTML, CSS, JavaScript &amp; LocalStorage </p>
+    <p>&copy; <span id="current-year"></span> Recipe Manager • Built with HTML, CSS, JavaScript &amp; localStorage • Press <kbd>^</kbd> to add new recipe, <kbd>`</kbd> to search.</p>
   </footer>
 
+  <!-- Toasts -->
   <div id="toastContainer" class="toast-container"></div>
 
- <script type="module" src="js/app.js"></script>
+  <script type="module" src="./js/app.js"></script>
 </body>
 </html>

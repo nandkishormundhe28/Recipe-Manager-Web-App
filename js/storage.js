@@ -1,5 +1,11 @@
-// storage.js - localStorage and seed data
-const STORAGE_KEY = "recipes_dark_app_v3_slider";
+// storage.js - localStorage + seed data
+
+export const STORAGE_KEY = "recipes_dark_app_v3_slider";
+
+// Generate unique ids
+export function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
 
 function safeParseJSON(value, fallback) {
   try {
@@ -12,78 +18,59 @@ function safeParseJSON(value, fallback) {
   }
 }
 
-export function loadRecipes() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) {
-    const seeded = getSeedRecipes();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded)); } catch (e) { console.warn("Could not write seed to localStorage.", e); }
-    return seeded;
-  }
-
-  const parsed = safeParseJSON(stored, null);
-  if (!parsed) {
-    const seeded = getSeedRecipes();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded)); } catch (e) { console.warn("Could not write seed to localStorage.", e); }
-    return seeded;
-  }
-
-  return parsed;
-}
-
-export function saveRecipes(recipes) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
-  } catch (e) {
-    console.warn("Failed to save recipes to localStorage:", e);
-  }
-}
-
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-}
-
+/* ========== Seed Data (Veg + Non-veg) ========== */
 function getSeedRecipes() {
   const now = new Date().toISOString();
 
-  const butterChickenRecipe = {
+  const paneerTikkaMasala = {
     id: generateId(),
-    title: "Butter Chicken",
-    description: "Creamy and mildly spiced butter chicken for 2 people – tender marinated chicken simmered in a rich tomato-cream gravy.",
-    type: "nonveg",
+    title: "Paneer Tikka Masala",
+    description:
+      "Restaurant-style Paneer Tikka Masala for 2 people – marinated paneer cubes in a rich, spiced gravy.",
+    type: "veg",
     ingredients: [
-      "300 g boneless chicken, cubed",
-      "1/2 cup curd",
-      "1 tbsp lemon juice",
-      "1.5 tsp ginger–garlic paste",
-      "1.5 tsp red chilli powder (adjust to taste)",
-      "1/2 tsp turmeric powder",
-      "1 tsp garam masala",
-      "2 tbsp butter",
-      "1 tbsp oil",
-      "2 medium tomatoes, pureed",
-      "1 small onion, finely chopped",
-      "1/2 cup fresh cream",
-      "1 tsp kasuri methi (optional)",
+      "250 g paneer, cubed",
+      "1/2 cup thick curd / yogurt",
+      "1 tbsp besan (gram flour)",
+      "2 tsp ginger–garlic paste (1 tsp for marinade, 1 tsp for gravy)",
+      "2 tsp red chilli powder (1 tsp for marinade, 1 tsp for gravy)",
+      "1/2 tsp turmeric powder (1/4 tsp for marinade, 1/4 tsp for gravy)",
+      "1.5 tsp coriander powder (1/2 tsp for marinade, 1 tsp for gravy)",
+      "1 tsp garam masala (1/2 tsp for marinade, 1/2 tsp for gravy)",
+      "1 tsp kasuri methi (1/2 tsp for marinade, 1/2 tsp for gravy)",
+      "1 tsp lemon juice",
+      "2 medium tomatoes, chopped",
+      "1 medium onion, chopped",
+      "1 green chilli (optional)",
+      "1 tbsp butter",
+      "1 tbsp oil (for gravy)",
+      "1 tbsp oil (for pan-frying paneer)",
+      "2 tbsp fresh cream",
       "1/2 tsp sugar",
       "Salt to taste",
-      "Fresh coriander for garnish",
+      "Fresh coriander, chopped (for garnish)",
     ],
     steps: [
-      "In a bowl, combine curd, lemon juice, 1/2 tsp ginger–garlic paste, 1 tsp red chilli powder, turmeric and salt. Add chicken and marinate for at least 30 minutes.",
-      "Pan-fry or grill the marinated chicken pieces until partially cooked and slightly charred. Keep aside.",
-      "Heat butter and oil in a pan. Add chopped onion and sauté until golden brown.",
-      "Add remaining ginger–garlic paste and sauté for 1 minute.",
-      "Add tomato puree and cook until the oil separates from the masala (5–7 minutes).",
-      "Add remaining red chilli powder, garam masala, sugar and a little water to adjust consistency. Simmer for 2–3 minutes.",
-      "Add the partially cooked chicken, cover and simmer for 8–10 minutes until chicken is cooked through.",
-      "Stir in fresh cream and kasuri methi, simmer 1–2 minutes and turn off the heat.",
-      "Garnish with fresh coriander and serve hot with naan, roti or rice.",
+      "In a bowl, add yogurt, besan, 1 tsp ginger-garlic paste, 1 tsp red chilli powder, 1/4 tsp turmeric, 1/2 tsp coriander powder, 1/2 tsp garam masala, 1/2 tsp kasuri methi, lemon juice, salt and 1 tbsp oil.",
+      "Mix well to form a smooth marinade. Add paneer cubes and gently coat. Rest for 15–20 minutes.",
+      "Heat a pan with a few drops of oil. Fry marinated paneer on medium heat until light golden spots appear. Keep aside.",
+      "For the gravy, heat 1 tbsp butter and 1 tbsp oil in a pan. Add chopped onion and sauté until light golden.",
+      "Add 1 tsp ginger-garlic paste and green chilli (optional). Sauté for 1 minute until raw smell goes.",
+      "Add chopped tomatoes and cook until soft and mushy.",
+      "Add 1 tsp red chilli powder, 1/4 tsp turmeric, 1 tsp coriander powder and salt. Cook for 2 minutes.",
+      "Turn off heat and let the mixture cool slightly. Blend to a smooth paste.",
+      "Pour the blended gravy back into the pan. Add 1/2–1 cup water to adjust consistency.",
+      "Add 1/2 tsp garam masala, 1/2 tsp kasuri methi and 1/2 tsp sugar. Simmer for 2–3 minutes.",
+      "Add cooked paneer tikka cubes and gently mix. Simmer for another 5–6 minutes on low flame.",
+      "Add 2 tbsp fresh cream, mix gently and turn off the heat.",
+      "Garnish with fresh coriander and serve hot with naan, roti or jeera rice.",
     ],
-    prepTime: 20,
-    cookTime: 30,
-    totalTime: 50,
+    prepTime: 30,
+    cookTime: 25,
+    totalTime: 55,
     difficulty: "medium",
-    imageUrl: "https://t3.ftcdn.net/jpg/06/01/41/68/360_F_601416862_AfYdeefqT1kGqWTx1DZCsJZVzYIDFzPR.jpg",
+    imageUrl:
+      "https://imgs.search.brave.com/CqmARVLpUTStVH83LwQCSkHfBjJvrMRFKjPiVg767nA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9rYW5u/YW5za2l0Y2hlbi5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDEvRFNDXzQ3/NTIuanBn",
     createdAt: now,
     updatedAt: now,
   };
@@ -111,7 +98,8 @@ function getSeedRecipes() {
     cookTime: 7,
     totalTime: 12,
     difficulty: "easy",
-    imageUrl: "https://imgs.search.brave.com/WFNRhnLnIkUiD8Vx4JVmdvd3Nsexy9WynsbeVkzXigo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/Y3JlYXRlLnZpc3Rh/LmNvbS9hcGkvbWVk/aWEvc21hbGwvNDA4/MTk3NzAwL3N0b2Nr/LXBob3RvLWluZGlh/bi1wb3B1bGFyLWRy/aW5rLW1hc2FsYS1j/aGFpLW1hc2FsYS10/ZWEtdHJhZGl0aW9u/YWwtYmV2ZXJhZ2Ut/YmxhY2s",
+    imageUrl:
+      "https://imgs.search.brave.com/WFNRhnLnIkUiD8Vx4JVmdvd3Nsexy9WynsbeVkzXigo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/Y3JlYXRlLnZpc3Rh/LmNvbS9hcGkvbWVk/aWEvc21hbGwvNDA4/MTk3NzAwL3N0b2Nr/LXBob3RvLWluZGlh/bi1wb3B1bGFyLWRy/aW5rLW1hc2FsYS1j/aGFpLW1hc2FsYS10/ZWEtdHJhZGl0aW9u/YWwtYmV2ZXJhZ2Ut/YmxhY2s",
     createdAt: now,
     updatedAt: now,
   };
@@ -139,7 +127,8 @@ function getSeedRecipes() {
     cookTime: 5,
     totalTime: 15,
     difficulty: "easy",
-    imageUrl: "https://imgs.search.brave.com/SZtEUHFubh58T-e_zX8TBsDD9UvtlNFFRnAAfjsiXyY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzZhLzRm/LzZlLzZhNGY2ZTBj/M2M5MWJmYjdkMTA3/ZjE2NGU5NDg4YTNh/LmpwZw",
+    imageUrl:
+      "https://imgs.search.brave.com/SZtEUHFubh58T-e_zX8TBsDD9UvtlNFFRnAAfjsiXyY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzZhLzRm/LzZlLzZhNGY2ZTBj/M2M5MWJmYjdkMTA3/ZjE2NGU5NDg4YTNh/LmpwZw",
     createdAt: now,
     updatedAt: now,
   };
@@ -147,7 +136,8 @@ function getSeedRecipes() {
   const vegPulao = {
     id: generateId(),
     title: "Veg Pulao",
-    description: "Aromatic one-pot vegetable pulao cooked with basmati rice and whole spices.",
+    description:
+      "Aromatic one-pot vegetable pulao cooked with basmati rice and whole spices.",
     type: "veg",
     ingredients: [
       "1 cup basmati rice (soaked 20 mins)",
@@ -179,7 +169,8 @@ function getSeedRecipes() {
     cookTime: 25,
     totalTime: 40,
     difficulty: "medium",
-    imageUrl: "https://imgs.search.brave.com/05qAKb-jz7L3bmIiuS6dTeeg7dxqCvuXuOk_HgfyOvw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aGVt/YWRzY2llbnRpc3Rz/a2l0Y2hlbi5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MDQvUXVpY2stVmVn/LVB1bGFvLmpwZWc",
+    imageUrl:
+      "https://imgs.search.brave.com/05qAKb-jz7L3bmIiuS6dTeeg7dxqCvuXuOk_HgfyOvw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aGVt/YWRzY2llbnRpc3Rz/a2l0Y2hlbi5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MDQvUXVpY2stVmVn/LVB1bGFvLmpwZWc",
     createdAt: now,
     updatedAt: now,
   };
@@ -187,7 +178,8 @@ function getSeedRecipes() {
   const chickenBiryani = {
     id: generateId(),
     title: "Chicken Biryani",
-    description: "Fragrant layered chicken biryani cooked with basmati rice and spices.",
+    description:
+      "Fragrant layered chicken biryani cooked with basmati rice and spices.",
     type: "nonveg",
     ingredients: [
       "500 g chicken, bone-in pieces",
@@ -221,60 +213,83 @@ function getSeedRecipes() {
     cookTime: 40,
     totalTime: 70,
     difficulty: "hard",
-    imageUrl: "https://imgs.search.brave.com/TgzxACdt-BK9X9Cgd3fAy7xTNA4MQZtQAHmK2Mp3pKo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTcv/NzEzLzYzNS9zbWFs/bC9mcmFncmFudC1m/bGF2b3JmdWwtY2hp/Y2tlbi1iaXJ5YW5p/LWNyb3duZWQtd2l0/aC1mcmllZC1vbmlv/bnMtZnJlZS1waG90/by5qcGc",
+    imageUrl:
+      "https://imgs.search.brave.com/TgzxACdt-BK9X9Cgd3fAy7xTNA4MQZtQAHmK2Mp3pKo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTcv/NzEzLzYzNS9zbWFs/bC9mcmFncmFudC1m/bGF2b3JmdWwtY2hp/Y2tlbi1iaXJ5YW5p/LWNyb3duZWQtd2l0/aC1mcmllZC1vbmlv/bnMtZnJlZS1waG90/by5qcGc",
     createdAt: now,
     updatedAt: now,
   };
 
-  const chickenMasala = {
+  const butterChicken = {
     id: generateId(),
-    title: "Chicken Masala",
-    description: "Classic Chicken Masala — bold spices and onions cooked into a thick, flavorful gravy. Perfect with rice or rotis.",
+    title: "Butter Chicken",
+    description:
+      "Creamy and mildly spiced butter chicken in a rich tomato-based gravy.",
     type: "nonveg",
     ingredients: [
-      "500 g chicken, cut into pieces",
-      "2 tbsp oil",
-      "2 large onions, thinly sliced",
-      "2 tomatoes, finely chopped or pureed",
+      "500 g boneless chicken, cubed",
+      "1/2 cup curd",
+      "2 tbsp lemon juice",
       "2 tsp ginger-garlic paste",
-      "2 tsp red chilli powder (adjust to taste)",
-      "1 tsp turmeric powder",
-      "2 tsp coriander powder",
+      "2 tsp red chilli powder (divided)",
+      "1/2 tsp turmeric",
+      "2 tbsp butter",
+      "2 tbsp oil",
+      "3 tomatoes, pureed",
+      "1 onion, finely chopped",
       "1 tsp garam masala",
-      "1/2 cup curd (optional)",
-      "1 bay leaf",
-      "2-3 green cardamoms",
-      "4-5 cloves",
-      "1 inch cinnamon stick",
-      "Salt to taste",
-      "Fresh coriander for garnish",
+      "1 tsp kasuri methi",
+      "1/2 cup fresh cream",
+      "Salt & sugar to taste",
     ],
     steps: [
-      "Heat oil in a heavy-bottom pan. Add bay leaf, cardamom, cloves and cinnamon; sauté for 30 seconds.",
-      "Add sliced onions and cook on medium-low heat until deep golden brown (8–10 minutes).",
-      "Stir in ginger-garlic paste and sauté for 1–2 minutes until raw smell disappears.",
-      "Add chopped/pureed tomatoes and cook until the oil separates from the masala (6–8 minutes).",
-      "Add red chilli powder, turmeric, coriander powder and salt. Cook for 1–2 minutes.",
-      "Add chicken pieces and mix well to coat with the masala. Cook for 5-6 minutes on medium heat.",
-      "If using curd, whisk and add now; otherwise add 1/2 cup water, cover and simmer for 12–15 minutes until chicken is tender.",
-      "Stir in garam masala, simmer 2 more minutes and turn off the heat.",
-      "Garnish with fresh coriander and serve hot with rice, naan or roti.",
+      "Marinate chicken with curd, lemon juice, 1 tsp red chilli powder, turmeric, salt and 1 tsp ginger-garlic paste for at least 30 minutes.",
+      "Pan-fry or grill marinated chicken until cooked and slightly charred. Keep aside.",
+      "In a pan, heat butter and oil. Add chopped onion and sauté until golden.",
+      "Add remaining ginger-garlic paste and sauté for a minute.",
+      "Add tomato puree, remaining chilli powder, salt and a pinch of sugar. Cook until oil separates.",
+      "Add garam masala, kasuri methi and a little water to adjust consistency.",
+      "Add cooked chicken pieces and simmer for 8–10 minutes.",
+      "Stir in fresh cream, simmer for 1–2 minutes and turn off heat.",
+      "Serve hot with naan, roti or rice.",
     ],
-    prepTime: 15,
+    prepTime: 25,
     cookTime: 30,
-    totalTime: 45,
+    totalTime: 55,
     difficulty: "medium",
-    imageUrl: "https://images.unsplash.com/photo-1604908176834-9157c5b8f4b3?auto=format&fit=crop&w=1200&q=80",
+    imageUrl:
+      "https://imgs.search.brave.com/JcRP27SNufOVWKz2Cmw0AgB59Mh1tAGuY4eoYmd_37U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI4/ODA5MjU3MS9waG90/by9pbWFnZS1vZi10/dXJxdW9pc2UtYmx1/ZS1jb29raW5nLXBh/bi1maWxsZWQtd2l0/aC1idXR0ZXItY2hp/Y2tlbi10aWtrYS1j/dXJyeS1sYXJnZS1j/aHVua3Mtb2YuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWFz/T25FX3BLSWNlbkJq/SmNwa053VTNVTnVk/T1k2ZEgweEtoR0lL/VWlZTUk9",
     createdAt: now,
     updatedAt: now,
   };
 
   return [
-    butterChickenRecipe,
+    paneerTikkaMasala,
     simpleTea,
     quickSandwich,
     vegPulao,
     chickenBiryani,
-    chickenMasala,
+    butterChicken,
   ];
+}
+
+export function loadRecipes() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) {
+    const seeded = getSeedRecipes();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+    return seeded;
+  }
+
+  const parsed = safeParseJSON(stored, null);
+  if (!parsed) {
+    const seeded = getSeedRecipes();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+    return seeded;
+  }
+
+  return parsed;
+}
+
+export function saveRecipes(recipes) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
 }
