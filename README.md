@@ -25,17 +25,6 @@
 ## 📁 Project Structure
 
 <<<<<<< HEAD
-/
-├── index.html
-├── main.css
-├── app.js
-├── ui.js
-├── storage.js
-└── validation.js
-
-yaml
-Copy code
-=======
 
 ├── index.html
 
