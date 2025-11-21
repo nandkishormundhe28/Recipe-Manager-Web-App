@@ -1,6 +1,6 @@
 // storage.js - localStorage + seed data
 
-export const STORAGE_KEY = "recipes_dark_app_v3_slider";
+export const STORAGE_KEY = "recipes_app_data";
 
 // Generate unique ids
 export function generateId() {
