@@ -24,7 +24,7 @@
 
 ## 📁 Project Structure
 
-/
+
 ├── index.html
 
 ├── main.css
