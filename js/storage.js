@@ -212,7 +212,7 @@ function getSeedRecipes() {
     id: generateId(),
     title: "Chicken Masala",
     description:
-      "Creamy and mildly spiced butter chicken in a rich tomato-based gravy.",
+      "Creamy and mildly spiced chicken in a rich tomato-based gravy.",
     type: "nonveg",
     ingredients: [
       "500 g boneless chicken, cubed",
