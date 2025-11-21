@@ -26,14 +26,16 @@
 
 /
 ├── index.html
-├── main.css
-├── app.js
-├── ui.js
-├── storage.js
-└── validation.js
 
-yaml
-Copy code
+├── main.css
+
+├── app.js
+
+├── ui.js
+
+├── storage.js
+
+└── validation.js
 
 ---
 
