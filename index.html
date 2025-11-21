@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recipe Manager | Butter Chicken & More</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-content">
+      <h1>Recipe Manager</h1>
+      <p>Recipes stored in your browser (localStorage)</p>
+    </div>
+    <div class="header-actions">
+      <button id="addRecipeBtn" class="btn primary">+ Add Recipe</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- Home / List View -->
+    <section id="recipe-list-view" class="view active">
+      <div class="toolbar card-toolbar">
+        <div class="toolbar-left">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search recipes by title (Paneer, Biryani, Sandwich...)"
+            aria-label="Search recipes by title"
+          />
+        </div>
+
+        <div class="toolbar-right toolbar-right-group">
+          <select id="difficultyFilter" aria-label="Filter by difficulty">
+            <option value="all">All difficulties</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <!-- Hidden select used for logic, slider is the UI -->
+          <select
+            id="typeFilter"
+            class="type-select-hidden"
+            aria-label="Filter by type (veg / non-veg)">
+            <option value="all" selected>Veg & Non-veg</option>
+            <option value="veg">Veg only</option>
+            <option value="nonveg">Non-veg only</option>
+          </select>
+
+          <!-- Veg / Non-veg / Both SLIDER -->
+          <div id="typeSlider" class="type-slider" role="radiogroup" aria-label="Filter by type">
+            <div class="type-slider-track">
+              <button
+                type="button"
+                class="type-slider-option is-active"
+                data-value="all"
+                aria-pressed="true">
+                <span class="type-dot both"></span>
+                <span class="type-label">Both</span>
+              </button>
+
+              <button
+                type="button"
+                class="type-slider-option"
+                data-value="veg"
+                aria-pressed="false">
+                <span class="type-dot veg"></span>
+                <span class="type-label">Veg</span>
+              </button>
+
+              <button
+                type="button"
+                class="type-slider-option"
+                data-value="nonveg"
+                aria-pressed="false">
+                <span class="type-dot nonveg"></span>
+                <span class="type-label">Non-veg</span>
+              </button>
+
+              <div class="type-slider-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p id="resultInfo" class="result-info"></p>
+
+      <div id="recipeGrid" class="recipe-grid">
+        <!-- Recipe cards injected here -->
+      </div>
+
+      <p id="emptyState" class="empty-state hidden">
+        No recipes found. Try a different search/filter or add a new recipe.
+      </p>
+    </section>
+
+    <!-- Recipe Detail View -->
+    <section id="recipe-detail-view" class="view">
+      <button class="btn link" id="backToListFromDetail">&larr; Back to all recipes</button>
+
+      <article class="card-elevated recipe-detail-card">
+        <div class="detail-header">
+          <div>
+            <div class="detail-title-row">
+              <h2 id="detailTitle"></h2>
+              <span id="detailDifficultyBadge" class="badge badge-detail easy"></span>
+              <span id="detailTypeBadge" class="type-pill veg"></span>
+            </div>
+            <p id="detailDescription" class="detail-description"></p>
+          </div>
+          <img id="detailImage" alt="Recipe image" class="detail-image hidden" />
+        </div>
+
+        <div class="detail-meta">
+          <span><strong>Difficulty:</strong> <span id="detailDifficultyText"></span></span>
+          <span><strong>Prep Time:</strong> <span id="detailPrepTime"></span> mins</span>
+          <span><strong>Cook Time:</strong> <span id="detailCookTime"></span> mins</span>
+          <span><strong>Total Time:</strong> <span id="detailTotalTime"></span> mins</span>
+          <span><strong>Dish Type:</strong> <span id="detailTypeText"></span></span>
+        </div>
+
+        <div class="detail-body">
+          <section>
+            <h3>Ingredients</h3>
+            <ul id="detailIngredients"></ul>
+          </section>
+
+          <section>
+            <h3>Steps</h3>
+            <ol id="detailSteps"></ol>
+          </section>
+        </div>
+
+        <div class="detail-actions">
+          <button id="editRecipeBtn" class="btn secondary">Edit</button>
+          <button id="deleteRecipeBtn" class="btn danger">Delete</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Add/Edit Recipe Form View -->
+    <section id="recipe-form-view" class="view">
+      <button class="btn link" id="backToListFromForm">&larr; Back to all recipes</button>
+
+      <div class="card-elevated form-card">
+        <h2 id="formTitle">Add Recipe</h2>
+        <p class="form-subtitle">
+          Fields marked with * are required. Dish and all data is stored in your browser only.
+        </p>
+
+        <div id="formErrors" class="form-errors hidden"></div>
+
+        <form id="recipeForm" novalidate>
+          <input type="hidden" id="recipeId" />
+
+          <div class="form-group">
+            <label for="title">Title *</label>
+            <input type="text" id="title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Short Description *</label>
+            <textarea id="description" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="recipeType">Dish Type *</label>
+            <select id="recipeType" required>
+              <option value="">Select Veg / Non-veg...</option>
+              <option value="veg">Veg</option>
+              <option value="nonveg">Non-veg</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ingredients">
+              Ingredients * <span class="hint">(one per line)</span>
+            </label>
+            <textarea id="ingredients" rows="5" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="steps">
+              Steps * <span class="hint">(one step per line)</span>
+            </label>
+            <textarea id="steps" rows="6" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prepTime">Prep Time (mins) *</label>
+              <input type="number" id="prepTime" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="cookTime">Cook Time (mins) *</label>
+              <input type="number" id="cookTime" min="0" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="difficulty">Difficulty *</label>
+              <select id="difficulty" required>
+                <option value="">Select...</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="imageUrl">
+                Image URL <span class="hint">(optional – any food image link)</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save Recipe</button>
+            <button type="button" id="cancelFormBtn" class="btn secondary">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p> Recipe Manager • Built with HTML, CSS, JavaScript &amp; LocalStorage </p>
+  </footer>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+ <script type="module" src="./app.js"></script>
+</body>
+</html>
