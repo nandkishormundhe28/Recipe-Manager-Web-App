@@ -244,4 +244,8 @@ Click any recipe card to see:
 ## 🐛 Known Issues
 
 | Issue | Impact | Workaround |
+<<<<<<< HEAD
 |-------|--------|-----------|
+=======
+|-------|--------|-----------|
+>>>>>>> 993d0a3916bd3d312c90d2af36460c040fb442b1
