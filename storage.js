@@ -83,7 +83,7 @@ function getSeedRecipes() {
     cookTime: 30,
     totalTime: 50,
     difficulty: "medium",
-    imageUrl: "https://imgs.search.brave.com/JcRP27SNufOVWKz2Cmw0AgB59Mh1tAGuY4eoYmd_37U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRpYS5nZXR0eWltYWdlcy5jb20vaWQvMTI4ODA5MjU3MS9waG90by9pbWFnZS1vZi10dXJxdW9pc2UtYmx1ZS1jb29raW5nLXBhbi1maWxsZWQtd2l0aC1idXR0ZXItY2hpY2tlbi10aWtrYS1jdXJyeS1sYXJnZS1jaHVua3Mtb2YuanBnP3M9NjEyeDYxMiZ3PTAmaz0yMCZjPWFzT25FX3BLSWNlbkJqSmNwa053VTNVTnVkT1k2ZEgweEtoR0lLVWlZTUk9",
+    imageUrl: "https://t3.ftcdn.net/jpg/06/01/41/68/360_F_601416862_AfYdeefqT1kGqWTx1DZCsJZVzYIDFzPR.jpg",
     createdAt: now,
     updatedAt: now,
   };
