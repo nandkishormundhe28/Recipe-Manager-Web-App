@@ -24,6 +24,7 @@
 
 ## 📁 Project Structure
 
+<<<<<<< HEAD
 /
 ├── index.html
 ├── main.css
@@ -34,6 +35,20 @@
 
 yaml
 Copy code
+=======
+
+├── index.html
+
+├── main.css
+
+├── app.js
+
+├── ui.js
+
+├── storage.js
+
+└── validation.js
+>>>>>>> c3c4b5075aecd4b150c00f6c089dd684fa421e5b
 
 ---
 
@@ -200,4 +215,8 @@ Occurs if the detail-page HTML does not include:
 html
 Copy code
 <button id="editRecipeBtn">Edit</button>
+<<<<<<< HEAD
 (UI logic expects this element.)
+=======
+(UI logic expects this element.)
+>>>>>>> c3c4b5075aecd4b150c00f6c089dd684fa421e5b
