@@ -1,241 +1,247 @@
-📘 Recipe Manager — A Lightweight, Modern Recipe App
+<div align="center">
 
-A fully client-side Recipe Manager Web App built using HTML, CSS, and Vanilla JavaScript.
-The app allows users to add, edit, delete, search, and filter recipes, all stored locally using LocalStorage, making it fast, private, and completely offline-friendly.
+# 🍽️ Recipe Manager
 
-🚀 Features
-🥗 Core Features
+**A modern, dark-themed recipe management app built with vanilla JavaScript**
 
-Add new recipes with:
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![localStorage](https://img.shields.io/badge/Storage-localStorage-green?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
-Title
+*Store, organize, and manage your favorite recipes with a sleek interface*
 
-Description
+[View Demo](https://manav0721.github.io/Recipe_Manager/) 
 
-Ingredients
+</div>
 
-Steps
+---
 
-Preparation Time
+## 📋 Table of Contents
 
-Cooking Time
+- [About](#-about)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Data Structure](#-data-structure)
+- [Usage](#-usage)
+- [Keyboard Shortcuts](#-keyboard-shortcuts)
+- [Browser Support](#-browser-support)
+- [Assumptions & Limitations](#-assumptions--limitations)
+- [Known Issues](#-known-issues)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Difficulty
+---
 
-Veg/Non-Veg Type
+## 🎯 About
 
-Image URL
+**Recipe Manager** is a lightweight, client-side web application for managing your recipe collection. Built with vanilla JavaScript and modern CSS, it offers a beautiful dark-themed interface with zero dependencies and instant performance.
 
-Edit existing recipes
+### Why Recipe Manager?
 
-Delete recipes
+- ✅ **Zero Setup** – Just open and use
+- 🚀 **Lightning Fast** – No backend, no loading times
+- 🎨 **Beautiful UI** – Modern dark theme with smooth animations
+- 📱 **Fully Responsive** – Works on desktop, tablet, and mobile
+- 🔒 **Private** – All data stays on your device
 
-View recipes in a beautiful clean card layout
+---
 
-Detailed recipe view for reading instructions
+## ✨ Features
 
-Dark theme UI
+### Core Functionality
+- ➕ **Add/Edit/Delete** recipes with rich details
+- 🔍 **Instant Search** by title or description
+- 🎚️ **Smart Filters** by difficulty (Easy/Medium/Hard)
+- 🌿 **Type Toggle** for Veg/Non-Veg recipes
+- 📸 **Image Support** via external URLs
+- 💾 **Auto-Save** to localStorage
 
-🔍 Advanced Filtering & Search
+### User Experience
+- ⌨️ **Keyboard Shortcuts** for power users
+- 🎨 **Smooth Animations** and transitions
+- 📊 **Result Counter** shows filtered recipes
+- 🍞 **Toast Notifications** for actions
+- 📱 **Mobile-Optimized** layout
 
-Search by recipe title
+### Pre-loaded Recipes
+Comes with **6 delicious sample recipes**:
+- 🥘 Paneer Tikka Masala
+- ☕ Masala Chai
+- 🥪 Veg Sandwich
+- 🍚 Veg Pulao
+- 🍗 Chicken Biryani
+- 🍛 Butter Chicken
 
-Filter by difficulty (Easy / Medium / Hard)
+---
 
-Filter using Veg / Non-Veg / All slider
+## 🚀 Quick Start
 
-💾 Persistent Storage
+### Installation
 
-Recipes are stored in the browser using LocalStorage
+1. **Download** or clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/recipe-manager.git
+   cd recipe-manager
+   ```
 
-Includes pre-loaded sample recipes on first load
+2. **Open** `index.html` in your browser:
+   ```bash
+   # On macOS
+   open index.html
 
-💡 User Experience Extras
+   # On Linux
+   xdg-open index.html
 
-Toast notifications
+   # On Windows
+   start index.html
+   ```
 
-Accessible interactions
+3. **That's it!** No build process, no npm install, no configuration needed.
 
-Responsive design for mobile & desktop
+### File Structure
 
-🏗️ Project Structure
-root/
-│── index.html       # Main HTML UI
-│── main.css         # Complete styling + dark theme system
-│── app.js           # Application logic + initialization
-│── ui.js            # DOM rendering, event listeners, UI helpers
-│── storage.js       # LocalStorage logic + seeded recipes
-│── validation.js    # Form validation functions
-└── assets/ (optional if you add images)
+```
+recipe-manager/
+│
+├── 📄 index.html          # Main HTML structure
+├── 🎨 main.css            # Styling and dark theme
+├── ⚙️ app.js              # Main application controller
+├── 🖼️ ui.js               # UI rendering and DOM manipulation
+├── 💾 storage.js          # localStorage management + seed data
+└── ✅ validation.js       # Form validation logic
+```
 
-📁 File Responsibilities
-index.html
+---
 
-Page layout
+## 💾 Data Structure
 
-Recipe list section
+All recipes are stored in **localStorage** under the key: `recipes_dark_app_v3_slider`
 
-Recipe detail modal
+### Recipe Object Schema
 
-Recipe add/edit form
+```javascript
+{
+  id: "lq8z3f5g",              // Unique auto-generated ID
+  title: "Paneer Tikka Masala",
+  description: "Restaurant-style Paneer Tikka...",
+  type: "veg",                 // "veg" | "nonveg"
+  difficulty: "medium",        // "easy" | "medium" | "hard"
 
-Search bar + filters
+  ingredients: [               // Array of strings
+    "250 g paneer, cubed",
+    "1/2 cup thick yogurt"
+  ],
 
-Dark UI structure
+  steps: [                     // Array of strings
+    "Mix yogurt and spices...",
+    "Marinate paneer for 15 mins..."
+  ],
 
-main.css
+  prepTime: 30,                // Minutes (number)
+  cookTime: 25,                // Minutes (number)
+  totalTime: 55,               // Auto-calculated
 
-Complete UI styling
+  imageUrl: "https://...",     // External URL (optional)
+  createdAt: "2025-11-21T09:20:23.825Z",
+  updatedAt: "2025-11-21T09:20:23.825Z"
+}
+```
 
-Responsive layout
+### Data Persistence
 
-Dark theme color variables
+- Automatically saves to `localStorage` on every change
+- Survives page refreshes and browser restarts
+- **Warning**: Clearing browser data will delete all recipes
+- No cloud backup – data is device-specific
 
-Card designs & animation
+---
 
-app.js
+## 🎮 Usage
 
-Main controller
+### Adding a Recipe
 
-Connects storage + UI + validation
+1. Click the **"+ Add Recipe"** button (or press `^`)
+2. Fill in all required fields:
+   - Title and Description
+   - Ingredients (one per line)
+   - Steps (one per line)
+   - Prep & Cook Time (in minutes)
+   - Difficulty level
+   - Veg/Non-Veg type
+3. Optionally add an image URL
+4. Click **"Save Recipe"**
 
-Handles:
+### Searching & Filtering
 
-Adding recipes
+- **Search Bar**: Type to filter by title/description
+- **Difficulty Dropdown**: Filter by cooking difficulty
+- **Type Slider**: Toggle between All/Veg/Non-Veg
 
-Updating recipes
+### Viewing Recipe Details
 
-Viewing recipes
+Click any recipe card to see:
+- Full ingredient list
+- Step-by-step instructions
+- Cooking times and difficulty
+- Large preview image
 
-Deleting recipes
+### Editing & Deleting
 
-ui.js
+- Click **"Edit"** button in detail view to modify recipe
+- Click **"Delete"** button to remove (confirmation required)
 
-Renders recipe cards
+---
 
-Renders detail screens
+## ⌨️ Keyboard Shortcuts
 
-Handles veg/non-veg slider
+| Shortcut | Action |
+|----------|--------|
+| `^` | Open "Add Recipe" form |
+| `` ` `` (backtick) | Focus search bar |
 
-Toast notifications
+---
 
-Switches between views (List / Form / Detail)
+## 🌐 Browser Support
 
-storage.js
+| Browser | Minimum Version |
+|---------|----------------|
+| Chrome  | 90+ |
+| Firefox | 88+ |
+| Safari  | 14+ |
+| Edge    | 90+ |
 
-Reads and writes recipes to LocalStorage
+**Requirements**: ES6 modules support and localStorage enabled
 
-Seeds default data when none exists
+---
 
-Ensures persistence across sessions
+## ⚙️ Assumptions & Limitations
 
-validation.js
+### Assumptions
 
-Validates title, description, ingredients, steps, times
+- Modern browser with **ES6 module** support
+- **JavaScript enabled**
+- Recipe images are **external URLs** (not file uploads)
+- Ingredients/steps entered **one per line**
+- Times measured in **minutes only**
+- Single user per browser
 
-Returns error objects for UI to display
+### Limitations
 
-🖼️ Screenshots (Add your images here)
+| Limitation | Description |
+|-----------|-------------|
+| 🔒 **Local Only** | No cloud sync – data stored per browser |
+| 👤 **Single User** | No authentication or multi-user support |
+| 📸 **No Image Upload** | Only external URLs accepted |
+| 💾 **Storage Cap** | ~5-10MB localStorage limit (browser-dependent) |
+| 📤 **No Export** | Can't export recipes to file (CSV/JSON) |
+| 🖨️ **No Print View** | No printer-friendly formatting |
+| 🔄 **No Sync** | Data doesn't sync across devices |
+| 📊 **No Analytics** | No usage tracking or statistics |
 
-You can replace these placeholders with real screenshots.
+---
 
-![Home Page](./screenshots/home.png)
-![Add Recipe Page](./screenshots/add.png)
-![Recipe Details](./screenshots/details.png)
+## 🐛 Known Issues
 
-🔧 Installation & Setup
-
-You can run this project without any dependencies.
-
-Option 1 — Open Directly
-
-Simply open:
-
-index.html
-
-
-in any modern browser (Chrome, Edge, Firefox, Safari).
-
-Option 2 — Recommended (Run a Local Server)
-
-Using Python:
-
-# Python 3
-python -m http.server 8000
-
-
-Then open:
-
-http://localhost:8000
-
-
-Why recommended?
-Because it gives a real server environment and avoids browser restrictions.
-
-📚 How to Use
-➕ Add Recipe
-
-Click Add Recipe button
-
-Fill all required fields
-
-Hit Save Recipe
-
-The recipe gets saved in LocalStorage
-
-✏️ Edit Recipe
-
-Open a recipe
-
-Click Edit
-
-Modify fields
-
-Save
-
-🗑️ Delete Recipe
-
-Open a recipe
-
-Click Delete Recipe
-
-Confirm
-
-🔍 Search & Filter
-
-Type in search bar to find recipes by title
-
-Use difficulty dropdown
-
-Use Veg/Non-Veg slider
-
-🧠 LocalStorage Data
-
-Recipes are stored under the key:
-
-recipes_dark_app_v3_slider
-
-
-This allows:
-
-Persistent storage
-
-Offline functionality
-
-No backend required
-
-You can manually inspect data in:
-
-DevTools → Application → LocalStorage
-
-🌱 Future Enhancements (Ideas)
-
-Image upload instead of image URL
-
-Export/import recipes as JSON
-
-Categories (Breakfast, Lunch, Dinner)
-
-Ratings & Favorites
-
-Cloud sync with backend (optional upgrade)
+| Issue | Impact | Workaround |
+|-------|--------|-----------|

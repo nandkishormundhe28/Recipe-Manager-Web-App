@@ -22,59 +22,48 @@ function safeParseJSON(value, fallback) {
 function getSeedRecipes() {
   const now = new Date().toISOString();
 
-  const paneerTikkaMasala = {
+  const butterChicken = {
     id: generateId(),
-    title: "Paneer Tikka Masala",
+    title: "Butter Chicken",
     description:
-      "Restaurant-style Paneer Tikka Masala for 2 people – marinated paneer cubes in a rich, spiced gravy.",
-    type: "veg",
+      "Creamy and mildly spiced butter chicken in a rich tomato-based gravy.",
+    type: "nonveg",
     ingredients: [
-      "250 g paneer, cubed",
-      "1/2 cup thick curd / yogurt",
-      "1 tbsp besan (gram flour)",
-      "2 tsp ginger–garlic paste (1 tsp for marinade, 1 tsp for gravy)",
-      "2 tsp red chilli powder (1 tsp for marinade, 1 tsp for gravy)",
-      "1/2 tsp turmeric powder (1/4 tsp for marinade, 1/4 tsp for gravy)",
-      "1.5 tsp coriander powder (1/2 tsp for marinade, 1 tsp for gravy)",
-      "1 tsp garam masala (1/2 tsp for marinade, 1/2 tsp for gravy)",
-      "1 tsp kasuri methi (1/2 tsp for marinade, 1/2 tsp for gravy)",
-      "1 tsp lemon juice",
-      "2 medium tomatoes, chopped",
-      "1 medium onion, chopped",
-      "1 green chilli (optional)",
-      "1 tbsp butter",
-      "1 tbsp oil (for gravy)",
-      "1 tbsp oil (for pan-frying paneer)",
-      "2 tbsp fresh cream",
-      "1/2 tsp sugar",
-      "Salt to taste",
-      "Fresh coriander, chopped (for garnish)",
+      "500 g boneless chicken, cubed",
+      "1/2 cup curd",
+      "2 tbsp lemon juice",
+      "2 tsp ginger-garlic paste",
+      "2 tsp red chilli powder (divided)",
+      "1/2 tsp turmeric",
+      "2 tbsp butter",
+      "2 tbsp oil",
+      "3 tomatoes, pureed",
+      "1 onion, finely chopped",
+      "1 tsp garam masala",
+      "1 tsp kasuri methi",
+      "1/2 cup fresh cream",
+      "Salt & sugar to taste",
     ],
     steps: [
-      "In a bowl, add yogurt, besan, 1 tsp ginger-garlic paste, 1 tsp red chilli powder, 1/4 tsp turmeric, 1/2 tsp coriander powder, 1/2 tsp garam masala, 1/2 tsp kasuri methi, lemon juice, salt and 1 tbsp oil.",
-      "Mix well to form a smooth marinade. Add paneer cubes and gently coat. Rest for 15–20 minutes.",
-      "Heat a pan with a few drops of oil. Fry marinated paneer on medium heat until light golden spots appear. Keep aside.",
-      "For the gravy, heat 1 tbsp butter and 1 tbsp oil in a pan. Add chopped onion and sauté until light golden.",
-      "Add 1 tsp ginger-garlic paste and green chilli (optional). Sauté for 1 minute until raw smell goes.",
-      "Add chopped tomatoes and cook until soft and mushy.",
-      "Add 1 tsp red chilli powder, 1/4 tsp turmeric, 1 tsp coriander powder and salt. Cook for 2 minutes.",
-      "Turn off heat and let the mixture cool slightly. Blend to a smooth paste.",
-      "Pour the blended gravy back into the pan. Add 1/2–1 cup water to adjust consistency.",
-      "Add 1/2 tsp garam masala, 1/2 tsp kasuri methi and 1/2 tsp sugar. Simmer for 2–3 minutes.",
-      "Add cooked paneer tikka cubes and gently mix. Simmer for another 5–6 minutes on low flame.",
-      "Add 2 tbsp fresh cream, mix gently and turn off the heat.",
-      "Garnish with fresh coriander and serve hot with naan, roti or jeera rice.",
+      "Marinate chicken with curd, lemon juice, 1 tsp red chilli powder, turmeric, salt and 1 tsp ginger-garlic paste for at least 30 minutes.",
+      "Pan-fry or grill marinated chicken until cooked and slightly charred. Keep aside.",
+      "In a pan, heat butter and oil. Add chopped onion and sauté until golden.",
+      "Add remaining ginger-garlic paste and sauté for a minute.",
+      "Add tomato puree, remaining chilli powder, salt and a pinch of sugar. Cook until oil separates.",
+      "Add garam masala, kasuri methi and a little water to adjust consistency.",
+      "Add cooked chicken pieces and simmer for 8–10 minutes.",
+      "Stir in fresh cream, simmer for 1–2 minutes and turn off heat.",
+      "Serve hot with naan, roti or rice.",
     ],
-    prepTime: 30,
-    cookTime: 25,
+    prepTime: 25,
+    cookTime: 30,
     totalTime: 55,
     difficulty: "medium",
     imageUrl:
-      "https://imgs.search.brave.com/CqmARVLpUTStVH83LwQCSkHfBjJvrMRFKjPiVg767nA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9rYW5u/YW5za2l0Y2hlbi5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDEvRFNDXzQ3/NTIuanBn",
+      "https://imgs.search.brave.com/JcRP27SNufOVWKz2Cmw0AgB59Mh1tAGuY4eoYmd_37U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI4/ODA5MjU3MS9waG90/by9pbWFnZS1vZi10/dXJxdW9pc2UtYmx1/ZS1jb29raW5nLXBh/bi1maWxsZWQtd2l0/aC1idXR0ZXItY2hp/Y2tlbi10aWtrYS1j/dXJyeS1sYXJnZS1j/aHVua3Mtb2YuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWFz/T25FX3BLSWNlbkJq/SmNwa053VTNVTnVk/T1k2ZEgweEtoR0lL/VWlZTUk9",
     createdAt: now,
     updatedAt: now,
   };
-
   const simpleTea = {
     id: generateId(),
     title: "Masala Chai (Tea)",
@@ -219,9 +208,9 @@ function getSeedRecipes() {
     updatedAt: now,
   };
 
-  const butterChicken = {
+  const chickenMasala = {
     id: generateId(),
-    title: "Butter Chicken",
+    title: "Chicken Masala",
     description:
       "Creamy and mildly spiced butter chicken in a rich tomato-based gravy.",
     type: "nonveg",
@@ -263,12 +252,12 @@ function getSeedRecipes() {
   };
 
   return [
-    paneerTikkaMasala,
+    butterChicken,
     simpleTea,
     quickSandwich,
     vegPulao,
     chickenBiryani,
-    butterChicken,
+    chickenMasala,
   ];
 }
 
