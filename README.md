@@ -55,7 +55,7 @@ Copy code
 
 The app runs instantly in any modern browser or
 
-Website Link - https://nandkishormundhe28.github.io/Recipe-Manager-Web-App/
+View Demo Link - https://nandkishormundhe28.github.io/Recipe-Manager-Web-App/
 
 ---
 
